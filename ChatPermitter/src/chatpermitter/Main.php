@@ -165,7 +165,7 @@ class Main extends PluginBase implements Listener {
 
 				case 1:
 
-					$Fdata = json_encode($data, true);
+					$Fdata = json_decode($data, true);
 
 					if($Fdata === null){
 
