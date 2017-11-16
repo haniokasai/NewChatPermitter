@@ -145,7 +145,7 @@ class Main extends PluginBase implements Listener {
 		$pk->formId = 1;
 		$pk->formData = json_encode($data);
 
-		$player->dataPacket($player);
+		$player->dataPacket($pk);
 
 	} 
 
