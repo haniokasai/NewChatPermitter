@@ -29,8 +29,8 @@ class Main extends PluginBase implements Listener {
 
 	public function onEnable() {
 
-		Server::Instance()->getLogget()->info("[ChatPermitter] > §a読み込み中...");
-		Server::Instance()->getPluginManager()->registerEvents($this, $this);
+		Server::getInstance()->getLogger()->info("[ChatPermitter] > §a読み込み中...");
+		Server::getInstance()->getPluginManager()->registerEvents($this, $this);
 
 		if(!file_exists($this->getDataFolder())) @mkdir($this->getDataFolder(), 0744, true);
 
@@ -93,7 +93,7 @@ class Main extends PluginBase implements Listener {
 
 		if(!$chatplayers[$name]){
 			$event->setCancelled(true);
-			Server::Instance()->getLogger()->info($event->getMessage());
+			Server::getInstance()->getLogger()->info($event->getMessage());
 			$this->getServer()->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "mirm"], [$player]), 1); 
 		}
 	}
@@ -161,11 +161,11 @@ class Main extends PluginBase implements Listener {
 			$formid = $packet->formId;
 			$formdata = $packet->formData;
 
-			switch($id){
+			switch($formid){
 
 				case 1:
 
-					$Fdata = json_decode($data, true);
+					$Fdata = json_decode($formdata, true);
 
 					if($Fdata === null){
 
