@@ -98,7 +98,7 @@ class Main extends PluginBase implements Listener {
                 $this->getServer()->getScheduler()->scheduleAsyncTask($job4 = new thread_getdata($code, $name, $delete_url));
             } else {
                 $player->sendMessage("[ChatPermitter] > §cこのコマンドを使うには、" . $chaturl . "にアクセスして、そこで得たキーをダイアログに入力してください。");
-                
+
                 $this->getServer()->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "mirm"], [$player]), 20);
             }
 		}
@@ -226,7 +226,7 @@ class thread_getdata extends AsyncTask {
 		$code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
 		if(is_numeric($response)){
-			if($response = 0){
+			if($response == 0){
 				$re["result"] = false;
 			}else{
 				$re["result"] = true;
