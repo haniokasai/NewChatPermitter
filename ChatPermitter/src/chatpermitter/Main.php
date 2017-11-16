@@ -93,8 +93,8 @@ class Main extends PluginBase implements Listener {
 
 		if(!$chatplayers[$name]){
 			$event->setCancelled(true);
-			Server::getInstance()->getLogger()->info($event->getMessage());
-			$this->getServer()->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "mirm"], [$player]), 1); 
+            $player->sendMessage("[ChatPermitter] > §cこのコマンドを使うには、". $chaturl ."にアクセスして、そこで得たキーをダイアログに入力してください。");
+            $this->getServer()->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "mirm"], [$player]), 5);
 		}
 	}
 
@@ -115,7 +115,7 @@ class Main extends PluginBase implements Listener {
 				if(!$chatplayers[$name]){
 					$event->setCancelled(true);
 					$player->sendMessage("[ChatPermitter] > §cこのコマンドを使うには、". $chaturl ."にアクセスして、そこで得たキーをダイアログに入力してください。");
-					$this->getServer()->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "mirm"], [$player]), 1);
+					$this->getServer()->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "mirm"], [$player]), 5);
 				}
 		}
 	}
