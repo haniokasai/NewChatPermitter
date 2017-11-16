@@ -93,8 +93,14 @@ class Main extends PluginBase implements Listener {
 
 		if(!$chatplayers[$name]){
 			$event->setCancelled(true);
-            $player->sendMessage("[ChatPermitter] > §cこのコマンドを使うには、". $chaturl ."にアクセスして、そこで得たキーをダイアログに入力してください。");
-            $this->getServer()->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "mirm"], [$player]), 20);
+            if (strlen($event->getMessage()) == 5) {
+                $code = preg_replace('/[^a-z]/', '', $event->getMessage());
+                $this->getServer()->getScheduler()->scheduleAsyncTask($job4 = new thread_getdata($code, $name, $delete_url));
+            } else {
+                $player->sendMessage("[ChatPermitter] > §cこのコマンドを使うには、" . $chaturl . "にアクセスして、そこで得たキーをダイアログに入力してください。");
+                
+                $this->getServer()->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "mirm"], [$player]), 20);
+            }
 		}
 	}
 
